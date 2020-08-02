@@ -74,7 +74,7 @@ function CadastroCategoria() {
     <PageDefault>
       <h1>
         Cadastrar Categoria:
-        {values.nome}
+        {values.titulo}
       </h1>
       <form onSubmit={function handleSubmit(infosDoEvento) {
         infosDoEvento.preventDefault();
@@ -90,7 +90,7 @@ function CadastroCategoria() {
           label="Nome da Categoria"
           type="text"
           name="nome"
-          value={values.nome}
+          value={values.titulo}
           onChange={handlerChange}
         />
         <FormField
@@ -147,9 +147,9 @@ function CadastroCategoria() {
           // console.log(indice, categoria);
           // eslint-disable-next-line implicit-arrow-linebreak
           (
-            <li key={`${categoria.nome}`}>
+            <li key={`${categoria.titulo}`}>
               {/** Para cada key ter um valor diferente */}
-              {categoria.nome}
+              {categoria.titulo}
             </li>
           ))}
       </ul>
