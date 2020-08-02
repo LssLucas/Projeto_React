@@ -1,5 +1,9 @@
 
-/* ESSE ARQUIVO FOI FEITO JUNTAMENTE COM A EQUIPE DA IMERSÃO ALURA */
+
+
+/* ESSE ARQUIVO FOI FEITO JUNTAMENTE COM A EQUIPE DA IMERSÃO ALURA 
+
+https://youtu.be/nDxp3YEpR1E?list=PLbcp5RKTX5wNF34qxISyWY6kignmhBQRT*/
 
 
 
@@ -45,7 +49,7 @@ a {
 
 #root {
 min-height: calc(100vh - var(--bodyPaddingTop));
-/*height visual ==> vh*/
+/*height visual ==> */
 display: flex;
 flex-direction: column;
 }
