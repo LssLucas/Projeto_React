@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -53,36 +56,39 @@ background: #53585D;
   &:focus:not([type="color"]) + span {
     transform: scale(.6) translateY(-10px);
   }
-  ${({ hasValue }) => hasValue && css`
-        &:not([type="color"]) + span {
-        transform: scale(.6) translateY(-10px);
-        }
-      `}
+  /* eslint-disable-next-line func-names*/
+  ${function ({ hasValue }) {
+    console.log(hasValue);
+    return hasValue && css`
+    &:not([type="color"]) + span {
+    transform: scale(.6) translateY(-10px);
+  }`;
+  }}
 `;
 function FormField({
   label, name, type, value, onChange,
 }) {
   const fieldId = `id_${name}`;
-  const isTextarea = type === 'textarea';
-  const tag = isTextarea ? 'extarea' : 'input';
-  const hasValue = Boolean (value.lenght);
+  const isTypeTextarea = type === 'textarea';
+  const tag = isTypeTextarea ? 'textarea' : 'input';
+  const hasValue = Boolean(value.length);
   return (
     <FormFieldWrapper>
       <label
         htmlFor={fieldId}
-      >
+        >
         <Input
-            as={tag}
-            id={fieldId}
-            type={type}
-            value={value}
-            name={name}
-            hasValue={hasValue}
-            onChange={onChange}
-            />
+          as={tag}
+          id={fieldId}
+          type={type}
+          value={value}
+          name={name}
+          hasValue={hasValue}
+          onChange={onChange}
+        />
             <Label.Text>
                 {label}
-                :
+              :
             </Label.Text>
       </label>
     </FormFieldWrapper>
