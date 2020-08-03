@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
-
+import useForm from '../../../../hooks/useForms';
 /*
 Exemplo de uso do State: Gmail
 Controle de true e false do menu.
@@ -16,22 +16,15 @@ Há uma separação dos dados que aparecem na tela dos dasos que estão no códi
 function CadastroCategoria() {
   /* Fazer com que o nome da categoria apareça em frente a Cadastrar Categoria */
   const valoresInicias = {
-    nome: '',
+    titulo: '',
     descricao: '',
-    cor: ' ',
+    cor: '',
   };
+  const { handleChange, values, clearForm } = useForm(valoresInicias);
   const [categorias, setCategorias] = useState([]);
-  /* PARA GUARDAR O TEXTO DA CATEGORIA DIGITADA E A NOVA CATEGORIA */
-  const [values, setValues] = useState(valoresInicias);
+  /* PARA GUARDAR O TEXTO DA CATEGORIA DIGITADA E A NOVA CATEGORIA */  
   // let [nomeDaCategoria] recebe e abre o array 'Filmes'
-  function setValue(chave, valor) {
-    setValues({
-      ...values,
-      [chave]: valor,
-    })
-  }
   useEffect(()=>{
-    console.log('aloalo');
     const URL = window.location.hostname.includes('localhost') 
     ? 'http://localhost:8080/categorias'
     : 'https://projetoreact.herokuapp.com/categorias'
@@ -42,7 +35,7 @@ function CadastroCategoria() {
           ...resposta,
         ]);
       });
-    /*setTimeout(()=>{
+    {/*setTimeout(()=>{
       setCategorias([
         ...categorias,
         {
@@ -50,7 +43,6 @@ function CadastroCategoria() {
           "nome":	"Front End",
           "descricao":	"Categoria",
           "cor":	"#cbd1ff"
-
         },
         {
           "id":	2,
@@ -59,17 +51,8 @@ function CadastroCategoria() {
           "cor":	"#cbd1ff"
         }
       ]);
-    }, 4*1000)*/
-  },[
-
-  ]);
-  function handlerChange(infosDoEvento) { /* A função 'funcaoHandler' captura a mundaça de input */
-    // const {getAttribute, value} = infosDoEvento.target;
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-    );
-  }
+    }, 4*1000)*/}
+  },[]);
   return (
     <PageDefault>
       <h1>
@@ -78,28 +61,27 @@ function CadastroCategoria() {
       </h1>
       <form onSubmit={function handleSubmit(infosDoEvento) {
         infosDoEvento.preventDefault();
-        // console.log('form para enviar')
         setCategorias([
           ...categorias,
           values,
         ]);
-        setValues(valoresInicias);
+        useForm();
       }}
       >
         <FormField
           label="Nome da Categoria"
           type="text"
-          name="nome"
+          name="titulo"
           value={values.titulo}
-          onChange={handlerChange}
+          onChange={handleChange}
         />
         <FormField
           label="Descrição"
           type=""
           name="descricao"
           value={values.descricao}
-          onChange={handlerChange}
-        />
+          onChange={handleChange}
+        />      
         {/*
           <div>
             <label>
@@ -118,7 +100,7 @@ function CadastroCategoria() {
           type="color"
           name="cor"
           value={values.cor}
-          onChange={handlerChange}
+          onChange={handleChange}
         />
         {/*
               <div>
@@ -143,11 +125,11 @@ function CadastroCategoria() {
         </div>
       )}
       <ul>
-        {categorias.map((categoria) =>
+        {categorias.map((categoria, indice) =>
           // console.log(indice, categoria);
           // eslint-disable-next-line implicit-arrow-linebreak
           (
-            <li key={`${categoria.titulo}`}>
+            <li key={`${categoria}${indice}`}>
               {/** Para cada key ter um valor diferente */}
               {categoria.titulo}
             </li>
