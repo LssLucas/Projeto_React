@@ -1,19 +1,11 @@
 import config from '../config';
 
-const URL_CATEGORIES = `${config.URL_BACKEND}/categorias?_embed=videos`;
-
 function getAllWithVideos() {
-  return fetch(URL_CATEGORIES)
-    .then(async (respostaDoServidor) => {
+  console.log(config.URL_BACKEND);
 
-      if (respostaDoServidor.ok) {
-        const resposta = await respostaDoServidor.json();
-        return resposta;
-      }
-    throw new Error('Não foi possivel pegar os dados :( ');
-  });
+  return config.URL_BACKEND;
 }
 
 export default {
   getAllWithVideos,
-};
+}
