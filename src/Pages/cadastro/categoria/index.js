@@ -18,7 +18,7 @@ function CadastroCategoria() {
   const [categorias, setCategorias] = useState([]);
   useEffect(() => {
     const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
+      ? 'http://localhost:3001/categorias'
       : 'https://projetoreact.herokuapp.com/categorias';
     fetch(URL)
       .then(async (respostaDoServidor) => {
