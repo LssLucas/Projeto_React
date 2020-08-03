@@ -1,9 +1,9 @@
-
+/* eslint-disable react/jsx-filename-extension */
 /*
     NO REACT TODO COMPONENTE É UMA FUNÇÃO
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Menu from '../../components/Menu';
 import dadosIniciais from '../../data/dados_iniciais.json';
@@ -12,19 +12,31 @@ import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
 
 const AppWrapper = styled.div`
-  background: var(--grayDark);
+  background: var();
 `;
 
 function Home() {
+  useEffect(() => {
+    const URL = window.location.hostname.includes('localhost') 
+    ? 'http://localhost:8080/categorias'
+    : 'https://projetoreact.herokuapp.com/categorias'
+    fetch(URL)
+      .then(async (respostaDoServidor)=>{
+        const resposta = await respostaDoServidor.json();
+        //setCategorias([
+        //  ...resposta,
+        //]);
+      });
+    },[]);
   return (
-    //Retorna JSX ou HTML
-    //Hot roll
+    // Retorna JSX ou HTML
+    // Hot roll
     <AppWrapper className="App">
       <Menu />
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"}
+        videoDescription="O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"
       />
       <Carousel
         ignoreFirstVideo
@@ -45,7 +57,7 @@ function Home() {
       <Carousel
         category={dadosIniciais.categorias[5]}
       />
-      <Footer />             
+      <Footer />
     </AppWrapper>
   );
 }

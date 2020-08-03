@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
-import useForm from '../../../../hooks/useForms';
+import useForm from '../../../hooks/useForms';
 /*
 Exemplo de uso do State: Gmail
 Controle de true e false do menu.
@@ -35,24 +35,24 @@ function CadastroCategoria() {
           ...resposta,
         ]);
       });
-    {/*setTimeout(()=>{
-      setCategorias([
-        ...categorias,
-        {
-          "id":	1,
-          "nome":	"Front End",
-          "descricao":	"Categoria",
-          "cor":	"#cbd1ff"
-        },
-        {
-          "id":	2,
-          "nome":	"Back End",
-          "descricao":	"Categoria",
-          "cor":	"#cbd1ff"
-        }
-      ]);
-    }, 4*1000)*/}
-  },[]);
+    },[]);
+      {/*setTimeout(()=>{
+        setCategorias([
+          ...categorias,
+          {
+            "id":	1,
+            "nome":	"Front End",
+            "descricao":	"Categoria",
+            "cor":	"#cbd1ff"
+          },
+          {
+            "id":	2,
+            "nome":	"Back End",
+            "descricao":	"Categoria",
+            "cor":	"#cbd1ff"
+          }
+        ]);
+      }, 4*1000)*/}
   return (
     <PageDefault>
       <h1>
@@ -65,7 +65,6 @@ function CadastroCategoria() {
           ...categorias,
           values,
         ]);
-        useForm();
       }}
       >
         <FormField
