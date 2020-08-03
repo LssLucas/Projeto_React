@@ -96,7 +96,7 @@ function FormField({
 }
 FormField.defaultProps = {
   type: 'text',
-  valeu: '',
+  value: '',
   onChange: () => {},
 };
 FormField.propTypes = {
