@@ -10,28 +10,24 @@ import dadosIniciais from '../../data/dados_iniciais.json';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
-
-const AppWrapper = styled.div`
-  background: var();
-`;
-
+import categoriasRepository from '../../repositories/categorias';
+{/*const AppWrapper = styled.div`
+background: var(--black);
+`;*/}
 function Home() {
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost') 
-    ? 'http://localhost:8080/categorias'
-    : 'https://projetoreact.herokuapp.com/categorias'
-    fetch(URL)
-      .then(async (respostaDoServidor)=>{
-        const resposta = await respostaDoServidor.json();
-        //setCategorias([
-        //  ...resposta,
-        //]);
-      });
+    categoriasRepository.getAllWithVideos()
+      .then(categoriasComVideos => {
+        setDadosIniciais(categoriasComVideos);
+        console.log(categoriasComVideos);
+      })
     },[]);
+
   return (
     // Retorna JSX ou HTML
     // Hot roll
     <AppWrapper className="App">
+
       <Menu />
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
