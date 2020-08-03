@@ -9,8 +9,6 @@ function useForm(valoresInicias) {
     });
   }
   function handlerChange(infosDoEvento) {
-    /* A função 'funcaoHandler' captura a mundaça de input */
-    // const {getAttribute, value} = infosDoEvento.target;
     setValue(
       infosDoEvento.target.getAttribute('name'),
       infosDoEvento.target.value,

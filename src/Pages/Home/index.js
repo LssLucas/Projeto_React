@@ -4,30 +4,25 @@
 */
 
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import Menu from '../../components/Menu';
 import dadosIniciais from '../../data/dados_iniciais.json';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
 import categoriasRepository from '../../repositories/categorias';
-{/*const AppWrapper = styled.div`
-background: var(--black);
-`;*/}
+
 function Home() {
   useEffect(() => {
     categoriasRepository.getAllWithVideos()
       .then(categoriasComVideos => {
-        setDadosIniciais(categoriasComVideos);
+        //setDadosIniciais(categoriasComVideos);
         console.log(categoriasComVideos);
-      })
-    },[]);
+      });
+    });
 
   return (
-    // Retorna JSX ou HTML
-    // Hot roll
-    <AppWrapper className="App">
-
+    <div style={{background: '#141414'}}>
       <Menu />
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
@@ -54,7 +49,7 @@ function Home() {
         category={dadosIniciais.categorias[5]}
       />
       <Footer />
-    </AppWrapper>
+    </div>
   );
 }
 
