@@ -14,7 +14,7 @@ function CadastroCategoria() {
     descricao: '',
     cor: '',
   };
-  const { handleChange, values, clearForm } = useForm(valoresInicias);
+  const { handlerChange, values, clearForm } = useForm(valoresInicias);
   const [categorias, setCategorias] = useState([]);
   useEffect(() => {
     const URL = window.location.hostname.includes('localhost')
@@ -48,21 +48,21 @@ function CadastroCategoria() {
           type="text"
           name="titulo"
           value={values.titulo}
-          onChange={handleChange}
+          onChange={handlerChange}
         />
         <FormField
           label="Descrição"
           type=""
           name="descricao"
           value={values.descricao}
-          onChange={handleChange}
+          onChange={handlerChange}
         />
         <FormField
           label="Cor"
           type="color"
           name="cor"
           value={values.cor}
-          onChange={handleChange}
+          onChange={handlerChange}
         />
         <Button>
           Cadastrar
