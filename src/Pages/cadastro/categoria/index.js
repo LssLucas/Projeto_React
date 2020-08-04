@@ -71,6 +71,9 @@ function CadastroCategoria() {
       {categorias.length === 0 && (
       <div>
         Loading...
+        <span>
+          Loading...
+        </span>
       </div>
       )}
       <ul>
