@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useEffect, useState } from 'react';
@@ -12,10 +13,11 @@ import categoriasRepository from '../../../repositories/categorias';
 function CadastroVideo() {
   const history = useHistory();
   const [categorias, setCategorias] = useState([]);
+  const categoryTitles = categorias.map(({ titulo }) => titulo);
   const { handlerChange, values } = useForm({
     titulo: 'Vídeo',
     url: 'https://www.youtube.com/watch?v=k7IPr-rhrPE',
-    categoria: 'Conheça o canal da Alura!',
+    categoriaId: 'Conheça o canal da Alura!',
   });
   useEffect(() => {
     categoriasRepository
@@ -30,17 +32,13 @@ function CadastroVideo() {
       <h1>Cadastrar Video</h1>
       <form onSubmit={(event) => {
         event.preventDefault();
-        const categoriaEscolhida = categorias.find((categoria) => {
-          return categoria.titulo === values.categoria;
-        });
-        console.log('categoriaEscolhida', categoriaEscolhida);
+        const categoriaEscolhida = categorias.find((categoria) => categoria.titulo === values.categoria);
         videosRepository.create({
           titulo: values.titulo,
           url: values.url,
-          categoriaId: 1,
+          categoriaId: categoriaEscolhida.id,
         })
           .then(() => {
-            console.log('Cadastrou com sucesso!!!');
             history.push('/');
           });
       }}
@@ -62,6 +60,7 @@ function CadastroVideo() {
           name="categoria"
           value={values.categoria}
           onChange={handlerChange}
+          suggestions={categoryTitles}
         />
         <Button type="submit">
           Cadastrar
